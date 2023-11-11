@@ -5,6 +5,7 @@ class Main:
     # general
     pygame.init()
     self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+    pygame.display.set_caption('Snake')
 
     # game objects
     self.bg_rects = [pygame.Rect((col + int(row % 2 == 0)) * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE) 
@@ -25,5 +26,6 @@ class Main:
       self.draw_bg()
       pygame.display.update()
 
-main = Main()
-main.run()
+if __name__ == '__main__':
+  main = Main()
+  main.run()

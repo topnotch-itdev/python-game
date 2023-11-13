@@ -1,5 +1,6 @@
 from settings import *
 
+from snake import Snake
 class Main:
   def __init__(self):
     # general
@@ -10,10 +11,13 @@ class Main:
     # game objects
     self.bg_rects = [pygame.Rect((col + int(row % 2 == 0)) * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE) 
                      for col in range(0, COLS, 2) for row in range(ROWS)]
+    
+    self.snake = Snake()
 
   def draw_bg(self):
+    self.display_surface.fill(LIGHT_GREEN)
     for rect in self.bg_rects:
-      pygame.draw.rect(self.display_surface, 'red', rect)
+      pygame.draw.rect(self.display_surface, DARK_GREEN, rect)
 
   def run(self):
     while True:
@@ -22,8 +26,8 @@ class Main:
           pygame.quit()
           exit()
 
-      self.display_surface.fill(LIGHT_GREEN)
       self.draw_bg()
+      self.snake.draw()
       pygame.display.update()
 
 if __name__ == '__main__':

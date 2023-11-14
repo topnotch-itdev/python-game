@@ -1,6 +1,7 @@
 from settings import *
 
 from snake import Snake
+from apple import Apple
 class Main:
   def __init__(self):
     # general
@@ -13,6 +14,7 @@ class Main:
                      for col in range(0, COLS, 2) for row in range(ROWS)]
     
     self.snake = Snake()
+    self.apple = Apple(self.snake)
 
   def draw_bg(self):
     self.display_surface.fill(LIGHT_GREEN)
@@ -28,6 +30,7 @@ class Main:
 
       self.draw_bg()
       self.snake.draw()
+      self.apple.draw()
       pygame.display.update()
 
 if __name__ == '__main__':

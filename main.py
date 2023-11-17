@@ -19,6 +19,7 @@ class Main:
     # timer
     self.update_event = pygame.event.custom_type()
     pygame.time.set_timer(self.update_event, 200)
+    self.game_active = False
 
   def draw_bg(self):
     self.display_surface.fill(LIGHT_GREEN)
@@ -42,6 +43,13 @@ class Main:
       self.snake.has_eaten = True
       self.apple.set_pos()
 
+    # game over
+    if self.snake.body[0] in self.snake.body[1:] or \
+      not 0 <= self.snake.body[0].x < COLS or \
+      not 0 <= self.snake.body[0].y < ROWS:
+      self.snake.reset()
+      self.game_active = False
+
   def run(self):
     while True:
       for event in pygame.event.get():
@@ -49,8 +57,11 @@ class Main:
           pygame.quit()
           exit()
         
-        if event.type == self.update_event:
+        if event.type == self.update_event and self.game_active:
           self.snake.update()
+
+        if event.type == pygame.KEYDOWN and not self.game_active:
+          self.game_active = True
       
       # updates
       self.input()

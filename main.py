@@ -67,7 +67,7 @@ class Main:
       self.input()
       self.collision()
 
-      # drwaing
+      # drawing
       self.draw_bg()
       self.snake.draw()
       self.apple.draw()
